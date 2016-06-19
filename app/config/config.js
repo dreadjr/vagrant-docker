@@ -8,5 +8,6 @@ links.queue = links.queue || {hostname: 'localhost', port: 11300}
 
 module.exports = {
   db: links.postgres,
-  cache:
+  cache: links.redis,
+  queue: links.queue
 }
