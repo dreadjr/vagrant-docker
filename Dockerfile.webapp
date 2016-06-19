@@ -1,0 +1,16 @@
+FROM phusion/baseimage
+
+RUN rm -f /etc/service/sshd/down
+RUN /etc/my_init.d/00_regen_ssh_host_keys.sh
+RUN /usr/sbin/enable_insecure_key
+
+RUN     apt-get -y update
+RUN     apt-get -y install nodejs
+RUN     apt-get -y install npm
+
+RUN 	mkdir -p /opt/app
+COPY	app/. /opt/app
+RUN	cd /opt/app && npm install
+
+ENV environment=prod
+CMD	["cross-env", "NODE_ENV=development node index.js" ]
