@@ -39,7 +39,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "search" do |v|
     v.vm.provider "docker" do |d|
-      d.image = "_/elasticsearch"
+      d.image = "elasticsearch"
       d.ports = ["9200:9200", "9300:9300"]
       d.name = "search"
       d.vagrant_machine = "#{DOCKER_HOST_NAME}"
